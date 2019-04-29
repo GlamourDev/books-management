@@ -1,0 +1,95 @@
+@import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);
+
+.pagination {
+  margin: 0 auto;
+  display: table;
+}
+
+.pagination>li {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #3f51b5;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+  cursor: pointer;
+}
+
+.pagination>li:hover,
+.pagination>li:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+
+.pagination-active {
+  background-color: #3f51b5 !important;
+  color: white !important;
+}
+
+div.row>button {
+  display: block !important;
+}
+
+#root>div {
+  padding: 5%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.comments-box {
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 14%;
+  position: relative;
+  width: 100%;
+  flex-direction: column-reverse;
+}
+
+svg#text-heart {
+  fill: red;
+  animation: pulse 5s infinite linear;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1);
+  }
+
+  92% {
+    transform: scale(1.8);
+  }
+
+  94% {
+    transform: scale(1);
+  }
+
+  96% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#wrapper {
+  margin: 0 auto;
+  display: table;
+  margin-top: 24%;
+}
+
+#wrapper>h1 {
+  font-size: 17px !important;
+}

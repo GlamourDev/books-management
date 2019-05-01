@@ -1,5 +1,7 @@
 .idea
 *.iml
+.settings
+.vscode
 target
-frontend/node_modules
-frontend/build
+front-end/node_modules
+front-end/build

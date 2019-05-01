@@ -47,7 +47,7 @@ class ListBooksComponent extends Component {
         this.timeout = setTimeout(() => {
           if (this.mounted) this.setState({ clicked: false, loading: false });
           this.timeout = null;
-        }, 1500);
+        }, 500);
       });
     }
   }
@@ -62,7 +62,7 @@ class ListBooksComponent extends Component {
         this.timeout = setTimeout(() => {
           if (this.mounted) this.setState({ clicked: false, loading: false });
           this.timeout = null;
-        }, 1500);
+        }, 1000);
       });
     }
   }
@@ -186,7 +186,7 @@ class ListBooksComponent extends Component {
             </Button>
           </div>
           <div>
-            <ul className="pagination" id="page-numbers">
+            <ul className="pagination">
               {renderPageNumbers}
             </ul>
           </div>

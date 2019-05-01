@@ -35,6 +35,10 @@ div.row>button {
   display: block !important;
 }
 
+thead {
+  text-align-last: center;
+}
+
 #root>div {
   padding: 5%;
 }

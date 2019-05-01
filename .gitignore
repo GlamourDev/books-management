@@ -3,5 +3,6 @@
 .settings
 .vscode
 target
-src/front-end/node_modules
-src/front-end/build
+src/frontend/node_modules
+src/frontend/build
+src/frontend/package-lock.json

@@ -127,7 +127,7 @@ class EditBooksComponent extends Component {
   }
 
   render() {
-    let { description, id, author, isbn, commentCount } = this.state;
+    const { description, id, author, isbn, commentCount } = this.state;
     console.log(this.state.comments);
     return (
       <div>

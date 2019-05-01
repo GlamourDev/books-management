@@ -150,8 +150,8 @@ class ListBooksComponent extends Component {
                   <td>{book.id}</td>
                   <td>{book.description}</td>
                   <td>{book.author}</td>
-                  <td>{book.isbn}</td>
-                  <td>{book.commentCount}</td>
+                  <td style={{textAlign: "center"}}>{book.isbn}</td>
+                  <td style={{textAlign: "center"}}>{book.commentCount}</td>
                   <td>
                     <IconButton aria-label="Edit">
                       <EditIcon

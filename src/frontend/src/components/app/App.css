@@ -39,6 +39,10 @@ thead {
   text-align-last: center;
 }
 
+table > thead > tr > th:nth-child(2), th:nth-child(3) {
+  text-align-last: auto;
+}
+
 #root>div {
   padding: 5%;
 }

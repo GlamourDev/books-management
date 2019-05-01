@@ -6,7 +6,7 @@ Technologies used: React.js, Axios, Spring Boot, H2 database, JPA, Node.js, Mave
 ![bookmanagement-edit](./screenshot-edit.png)
 
 ## Installation
-Make sure you have Java JDK installed
+Make sure you have Java JDK installed.\
 Open up your favorite terminal and write,
 `git clone https://github.com/GlamourDev/books-management.git`
 

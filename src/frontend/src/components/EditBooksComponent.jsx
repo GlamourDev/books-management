@@ -25,7 +25,6 @@ class EditBooksComponent extends Component {
 
   componentDidMount() {
     this.getDate();
-    this.refreshComments();
 
     // eslint-disable-next-line
     if (this.state.id == -1) {
@@ -42,11 +41,7 @@ class EditBooksComponent extends Component {
     );
 
     CommentsDataService.retrieveComment(this.state.id).then(response =>
-      this.setState({
-        comments: response.data.comments,
-        timestamp: response.data.timestamp
-      })
-    );
+      this.setState({ comments: response.data }));
   }
   validate(values) {
     let errors = {};
@@ -70,8 +65,39 @@ class EditBooksComponent extends Component {
     });
   }
 
+  isCommentAvailable() {
+    if (this.state.id > 0) {
+    return (
+      <div className="col-sm-6 second-column">
+      <h3>Comments</h3>
+      <Formik
+        onSubmit={this.onSubmitComment}
+        enableReinitialize={true}
+      >
+        {props => (
+          <Form>
+            <fieldset className="form-group">
+              <label>Comment</label>
+              <Field
+                className="form-control"
+                type="text"
+                name="comments"
+              />
+            </fieldset>
+            <Button size="medium" type="submit" className="float-right">
+              Add comment
+            </Button>
+          </Form>
+        )}
+      </Formik>
+      <div className="comments-box">{this.renderComments()}</div>
+    </div>
+    );
+        }
+  }
+
   renderComments() {
-    return this.state.comments.map(comment => {
+    return [this.state.comments].map(comment => {
       return (
         <ul key={comment.id}>
           <li>
@@ -113,17 +139,9 @@ class EditBooksComponent extends Component {
       comments: values.comments,
       timestamp: this.state.date
     };
-
-    if (this.state.id === "-1") {
       CommentsDataService.createComment(comment).then(() =>
-        this.props.history.push("/books")
-      );
-    } else {
-      CommentsDataService.updateComment(this.state.id, comment).then(() =>
-        this.props.history.push("/books")
-      );
-    }
-    console.log(values);
+      this.props.history.push("/books")
+    );
   }
 
   render() {
@@ -190,31 +208,7 @@ class EditBooksComponent extends Component {
                 )}
               </Formik>
             </div>
-            <div className="col-sm-6 second-column">
-              <h3>Comments</h3>
-              <Formik
-                onSubmit={this.onSubmitComment}
-                enableReinitialize={true}
-                initialValues={{ id }}
-              >
-                {props => (
-                  <Form>
-                    <fieldset className="form-group">
-                      <label>Comment</label>
-                      <Field
-                        className="form-control"
-                        type="text"
-                        name="comments"
-                      />
-                    </fieldset>
-                    <Button size="medium" type="submit" className="float-right">
-                      Add comment
-                    </Button>
-                  </Form>
-                )}
-              </Formik>
-              <div className="comments-box">{this.renderComments()}</div>
-            </div>
+            {this.isCommentAvailable()}
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ values(13,'Marijn Haverbeke','4','Eloquent JavaScript','978-0565433991');
 
 
 INSERT INTO comments
-values(100,'Very good book','12.12.2012');
+values(1,'Very good book','12.12.2012');
 INSERT INTO comments
-values(101,'This is really awesome','11.12.2014');
+values(2,'This is really awesome','11.12.2014');
 

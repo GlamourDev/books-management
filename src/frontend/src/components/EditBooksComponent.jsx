@@ -41,7 +41,8 @@ class EditBooksComponent extends Component {
     );
 
     CommentsDataService.retrieveComment(this.state.id).then(response =>
-      this.setState({ comments: response.data }));
+      this.setState({ comments: response.data })
+    );
   }
   validate(values) {
     let errors = {};
@@ -55,60 +56,18 @@ class EditBooksComponent extends Component {
   }
 
   getDate = () => {
-    var date = new Date().toDateString().slice(0, 10);
+    var date = new Date().toLocaleString([], {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
     this.setState({ date });
   };
 
   refreshComments() {
-    CommentsDataService.retrieveAllComments().then(response => {
-      this.setState({ comments: response.data });
-    });
-  }
-
-  isCommentAvailable() {
-    if (this.state.id > 0) {
-    return (
-      <div className="col-sm-6 second-column">
-      <h3>Comments</h3>
-      <Formik
-        onSubmit={this.onSubmitComment}
-        enableReinitialize={true}
-      >
-        {props => (
-          <Form>
-            <fieldset className="form-group">
-              <label>Comment</label>
-              <Field
-                className="form-control"
-                type="text"
-                name="comments"
-              />
-            </fieldset>
-            <Button size="medium" type="submit" className="float-right">
-              Add comment
-            </Button>
-          </Form>
-        )}
-      </Formik>
-      <div className="comments-box">{this.renderComments()}</div>
-    </div>
+    CommentsDataService.retrieveComment(this.state.id).then(response =>
+      this.setState({ comments: response.data })
     );
-        }
-  }
-
-  renderComments() {
-    return [this.state.comments].map(comment => {
-      return (
-        <ul key={comment.id}>
-          <li>
-            Date: <span>{comment.timestamp}</span>
-          </li>
-          <li>
-            Comment: <span>{comment.comments}</span>
-          </li>
-        </ul>
-      );
-    });
   }
 
   onSubmit(values) {
@@ -139,14 +98,17 @@ class EditBooksComponent extends Component {
       comments: values.comments,
       timestamp: this.state.date
     };
-      CommentsDataService.createComment(comment).then(() =>
-      this.props.history.push("/books")
+    CommentsDataService.createComment(comment).then(() =>
+      this.setState({
+        id: this.state.id,
+        timestamp: this.state.date,
+        comments: values.comments
+      })
     );
   }
 
   render() {
     const { description, id, author, isbn, commentCount } = this.state;
-    console.log(this.state.comments);
     return (
       <div>
         <div className="container">
@@ -208,7 +170,50 @@ class EditBooksComponent extends Component {
                 )}
               </Formik>
             </div>
-            {this.isCommentAvailable()}
+            <React.Fragment>
+            {this.refreshComments()}
+              {this.state.id > 0 && (
+                <div className="col-sm-6 second-column">
+                  <h3>Comments</h3>
+                  <Formik
+                    onSubmit={this.onSubmitComment}
+                    enableReinitialize={true}
+                  >
+                    {props => (
+                      <Form>
+                        <fieldset className="form-group">
+                          <label>Comment</label>
+                          <Field
+                            className="form-control"
+                            type="text"
+                            name="comments"
+                          />
+                        </fieldset>
+                        <Button
+                          size="medium"
+                          type="submit"
+                          className="float-right"
+                        >
+                          Add comment
+                        </Button>
+                      </Form>
+                    )}
+                  </Formik>
+                  <div className="comments-box">
+                    {[this.state.comments].map(comment => (
+                      <ul key={comment.id}>
+                        <li>
+                          Date: <span>{comment.timestamp}</span>
+                        </li>
+                        <li>
+                          Comment: <span>{comment.comments}</span>
+                        </li>
+                      </ul>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
           </div>
         </div>
       </div>

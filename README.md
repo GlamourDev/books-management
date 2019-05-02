@@ -5,6 +5,9 @@ Technologies used: React.js, Axios, Spring Boot, H2 database, JPA, Node.js, Mave
 ![bookmanagement-list](./screenshot-list.png)
 ![bookmanagement-edit](./screenshot-edit.png)
 
+## Preview [Read-only, because no REST server]
+https://abc-books.herokuapp.com/
+
 ## Installation
 Make sure you have Java JDK installed.\
 Open up your favorite terminal and write,
